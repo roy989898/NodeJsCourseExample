@@ -22,8 +22,8 @@ var saveNotes = (notes) => {
 
 
 var addNote = (title, body) => {
-  var notes = fetchNotes();
-  var note = {
+  let notes = fetchNotes();
+  let note = {
     title,
     body
   }
@@ -33,12 +33,14 @@ var addNote = (title, body) => {
   if (duplicatedNotes.length === 0) {
     notes.push(note);
     saveNotes(notes);
+
+    return note;
   }
 
 };
 
 var getAll = () => {
-  return 
+  console.log('Getting all notes');
 };
 
 var getNote = (title) => {
