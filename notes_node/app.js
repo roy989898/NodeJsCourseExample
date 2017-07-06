@@ -9,7 +9,13 @@ const yargs = require("yargs");
 
 
 const argv = yargs.argv;
+const command = argv._[0];
 
 notes.addNote(argv.title, argv.body);
 
-// console.log("port: ", argv.port);
+switch (command) {
+    case "list":
+        notes.getAll();
+        break;
+}
+
