@@ -15,7 +15,6 @@ var fetchNotes = () => {
 
 
 };
-
 var saveNotes = (notes) => {
   fs.writeFileSync("notes-data.json", JSON.stringify(notes));
 };
