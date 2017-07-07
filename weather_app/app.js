@@ -7,7 +7,7 @@ request({
     json: true
 
 }, function (error, respponse, body) {
-    // console.log('error:', error); // Print the error if one occurred 
-    // console.log('statusCode:', respponse && respponse.statusCode); // Print the response status code if a response was received 
-    console.log('body:', JSON.stringify(body, undefined, 3)); // Print the HTML for the Google hom
+    console.log('Address:', JSON.stringify(body.results[0].formatted_address));
+    console.log('Latitude:', JSON.stringify(body.results[0].geometry.location.lat));
+    console.log('Longitude:', JSON.stringify(body.results[0].geometry.location.lng));
 });
