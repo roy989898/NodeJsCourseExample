@@ -16,9 +16,8 @@ if (argv.address) {
     address = "elegance garden";
 }
 
-address = address.replace(" ", "%20");
 const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-    address;
+    encodeURIComponent(address);
 request({
     url: requestLink,
     json: true
