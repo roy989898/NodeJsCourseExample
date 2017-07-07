@@ -1,6 +1,22 @@
 const request = require("request");
-let address = "elegance garden";
-address=address.replace(" ","%20");
+const argv = require('yargs').options({
+    a: {
+        demand: true,
+        alias: "address",
+        describe: "address to fetch data",
+        string: true
+    }
+}).help()
+    .alias('help', 'h').argv;
+
+let address;
+if (argv.address) {
+    address = argv.address;
+} else {
+    address = "elegance garden";
+}
+
+address = address.replace(" ", "%20");
 const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
     address;
 request({
