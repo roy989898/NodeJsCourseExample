@@ -1,5 +1,6 @@
 const request = require("request");
-let address = "103";
+let address = "elegance garden";
+address=address.replace(" ","%20");
 const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
     address;
 request({
