@@ -11,19 +11,24 @@ const argv = require('yargs').options({
 
 
 
-const geocode = require("./gecode/gecode");
-const weather = require("./weather/weather");
+let gecode = require("./gecode/gecode");
+let weather = require("./weather/weather");
 
-geocode.gecodeAddress(argv.address, function (locationResult) {
-    let lat = locationResult.lat;
-    let lng = locationResult.lng;
-    weather.queryCurrentWeather(lat, lng, (errorMessage, responseObj) => {
-        if (errorMessage) {
-            console.log("Getting weather Error");
-        } else {
-            console.log(JSON.stringify(responseObj, undefined, 3));
 
-        }
+gecode.gecodeAddress(argv.address).then((response) => {
+    // console.log(response);
+    let result = response.data.results[0];
+    let lat = result.geometry.location.lat;
+    let lng = result.geometry.location.lng;
 
-    });
-})
+    return weather.queryCurrentWeather(lat, lng);
+}).then((weatherResponse) => {
+    let weatherData = weatherResponse.data;
+
+    console.log(JSON.stringify(weatherData, undefined, 3));
+
+}).catch((error) => {
+    console.log(error);
+});
+
+

@@ -1,6 +1,7 @@
 
-const request = require("request");
-let gecodeAddress = (address, callback) => {
+// const request = require("request");
+const axios = require('axios');
+/*let gecodeAddress = (address, callback) => {
 
     const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
         encodeURIComponent(address);
@@ -24,6 +25,14 @@ let gecodeAddress = (address, callback) => {
 
     });
 
+}*/
+
+
+let gecodeAddress = (address) => {
+
+    const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+        encodeURIComponent(address);
+    return axios.get(requestLink);
 }
 
 

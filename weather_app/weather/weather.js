@@ -1,5 +1,6 @@
-const request = require("request");
-let queryCurrentWeather = (lat, long, callback) => {
+// const request = require("request");
+const axios = require('axios');
+/*let queryCurrentWeather = (lat, long, callback) => {
     let requestLink = "https://api.darksky.net/forecast/f2333815f5f8c240bcc9baf188f6540a/" + lat + "," + long
     "?units=auto"
 
@@ -19,6 +20,15 @@ let queryCurrentWeather = (lat, long, callback) => {
 
         }
     });
+
+};*/
+
+let queryCurrentWeather = (lat, long) => {
+    let requestLink = "https://api.darksky.net/forecast/f2333815f5f8c240bcc9baf188f6540a/" + lat + "," + long
+    "?units=auto"
+
+   
+   return axios.get(requestLink);
 
 };
 
