@@ -1,6 +1,5 @@
 
 const request = require("request");
-require("");
 let gecodeAddress = (address, callback) => {
 
     const requestLink = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
