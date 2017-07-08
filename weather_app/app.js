@@ -12,6 +12,12 @@ const argv = require('yargs').options({
 
 
 const geocode = require("./gecode/gecode");
+const weather = require("./weather/weather");
 
-geocode.gecodeAddress(argv.address);
+geocode.gecodeAddress(argv.address, function (locationResult) {
+    let lat = locationResult.lat;
+    let lng = locationResult.lng;
+    weather.queryCurrentWeather(lat, lng);
+
+});
 
