@@ -13,7 +13,12 @@ let asyncAdd = (a, b) => {
     });
 };
 
-asyncAdd(3, "S").then((result) => {
+asyncAdd(3, 5).then((result) => {
+    console.log(result);
+    return asyncAdd(result, 6)
+}, (errorMessage) => {
+    console.log(errorMessage);
+}).then((result) => {
     console.log(result);
 }, (errorMessage) => {
     console.log(errorMessage);
