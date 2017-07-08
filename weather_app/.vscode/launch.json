@@ -10,7 +10,7 @@
             "name": "啟動程式",
             "program": "${workspaceRoot}\\app-promise.js",
             "args": [
-                "-a=Tuen Mun"
+                "-a=00 000"
             ]
         }
     ]

@@ -18,6 +18,9 @@ let weather = require("./weather/weather");
 gecode.gecodeAddress(argv.address).then((response) => {
     // console.log(response);
     let result = response.data.results[0];
+    if (result == undefined) {
+        throw new Error("Have error");
+    }
     let lat = result.geometry.location.lat;
     let lng = result.geometry.location.lng;
 
