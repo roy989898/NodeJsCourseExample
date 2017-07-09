@@ -4,7 +4,22 @@ let app = express();
 
 
 app.get('/', (req, res) => {
-    res.send('Hello Express');
+    res.send({
+        name: 'ROy',
+        old: '4'
+    });
 });
 
+
+
+app.get('/about', (req, res) => {
+    res.send('About page');
+});
+
+
+app.get('/bad', (req, res) => {
+    res.send({
+        errorMessage: 'Unable HandleMessage'
+    });
+});
 app.listen(3000);
