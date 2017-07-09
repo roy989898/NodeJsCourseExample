@@ -2,6 +2,7 @@ const express = require('express');
 
 let app = express();
 
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.send({
@@ -22,4 +23,6 @@ app.get('/bad', (req, res) => {
         errorMessage: 'Unable HandleMessage'
     });
 });
-app.listen(3000);
+app.listen(3000, () => {
+    console.log('Server on port 3000');
+});

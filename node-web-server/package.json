@@ -10,12 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3"
-  },
-  "eslintConfig": {
+  }
+  /* "eslintConfig": {
     "extends": "eslint:recommended",
     "env": {
       "es6": true,
       "node": true
     }
-  }
+  }*/
 }
