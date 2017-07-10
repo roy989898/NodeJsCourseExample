@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
-
+const port = process.env.PORT || 3000;
 let app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -23,9 +23,9 @@ app.use((req, res, next) => {
 
 });
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.render('maintenance.hbs');
-});
+});*/
 
 app.use(express.static(__dirname + '/public'));
 
@@ -63,6 +63,6 @@ app.get('/bad', (req, res) => {
         errorMessage: 'Unable HandleMessage'
     });
 });
-app.listen(3000, () => {
-    console.log('Server on port 3000');
+app.listen(port, () => {
+    console.log('Server on port ' + port);
 });
