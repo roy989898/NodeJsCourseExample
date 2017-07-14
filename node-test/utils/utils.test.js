@@ -2,34 +2,39 @@
 const expect = require("expect");
 const utils = require("./utils");
 
-it("should add two numbers", () => {
-    let res = utils.add(33, 11);
+describe("Utils", () => {
+    it("should add two numbers", () => {
+        let res = utils.add(33, 11);
 
-    expect(res).toBe(44).toBeA("number");
-});
+        expect(res).toBe(44).toBeA("number");
+    });
 
-it("should async add two numbers", (done) => {
-    utils.asyncAdd(3, 4, (sum) => {
-        expect(sum).toBe(7).toBeA("number");
-        done();
+    it("should async add two numbers", (done) => {
+        utils.asyncAdd(3, 4, (sum) => {
+            expect(sum).toBe(7).toBeA("number");
+            done();
+        });
+
+
+    });
+
+    it("It should async square a number", (done) => {
+        utils.squareAsync(3, (squareResult) => {
+            expect(squareResult).toBe(9).toBeA("number");
+            done();
+        });
+
+    });
+
+    it("should square the number", () => {
+        let res = utils.square(4);
+
+
+        expect(res).toBe(16).toBeA("number");
+
     });
 
 
-});
-
-it("It should async square a number", (done) => {
-    utils.squareAsync(3, (squareResult) => {
-        expect(squareResult).toBe(9).toBeA("number");
-        done();
-    });
-
-});
-
-it("should square the number", () => {
-    let res = utils.square(4);
-    
-
-    expect(res).toBe(16).toBeA("number");
 
 });
 
@@ -62,3 +67,4 @@ it("should expect some values", () => {
     });
 
 });
+
