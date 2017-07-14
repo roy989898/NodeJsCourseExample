@@ -9,7 +9,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.15.3"
+  },
   "devDependencies": {
     "mocha": "^3.4.2",
     "expect": "^1.20.2"

@@ -27,6 +27,7 @@ it("It should async square a number", (done) => {
 
 it("should square the number", () => {
     let res = utils.square(4);
+    
 
     expect(res).toBe(16).toBeA("number");
 
