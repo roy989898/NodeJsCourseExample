@@ -35,7 +35,7 @@ describe('POST /todos', () => {
                     expect(todos[0].text).toBe(text);
                     console.log('finsih text');
                     done();
-                })/* .catch((e) => done(e)) */;
+                }).catch((e) => done(e));
             });
     });
 
