@@ -1,12 +1,18 @@
 {
   "dependencies": {
     "body-parser": "registry:dt/body-parser#1.16.0+20170321201455",
+    "expect": "registry:dt/expect#1.20.0+20170324151803",
     "express": "registry:npm/express#4.14.0+20170217205433",
+    "gulp-mocha": "registry:dt/gulp-mocha#0.0.0+20160510010627",
     "lodash": "registry:npm/lodash#4.0.0+20161015015725",
     "mongodb": "registry:npm/mongodb#2.1.0+20170211100415",
-    "mongoose": "registry:npm/mongoose#4.3.5+20160628072220"
+    "mongoose": "registry:npm/mongoose#4.3.5+20160628072220",
+    "supertest": "registry:dt/supertest#1.1.0+20161122042843"
   },
   "globalDependencies": {
     "mongoose": "registry:dt/mongoose#4.7.0+20170322192047"
+  },
+  "globalDevDependencies": {
+    "mocha": "registry:dt/mocha#2.2.5+20170311011848"
   }
 }
