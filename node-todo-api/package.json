@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.15.3",
     "mongodb": "^2.2.30",
-    "mongoose": "^4.11.3"
+    "mongoose": "^4.11.3",
+    "underdash": "0.0.1"
   }
 }
