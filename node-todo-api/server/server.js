@@ -1,28 +1,32 @@
 
 let Todo = require('./models/todo').Todo;
 let User = require('./models/user').User;
+const express = require('express');
+const bodyParser = require('body-parser');
 let newTodo = new Todo({
     text: false
 });
 
 
-/* 
-newTodo.save().then((doc) => {
-    console.log('Save to do', doc);
-}, (e) => {
-    console.log('Unable to Save to do', e);
-}); */
+let app = express();
 
-/* User  model
-email-require trim type min_length_1*/
+app.use(bodyParser.json());
+
+app.post('/todos', (req, res) => {
+    let todo = new Todo({
+        text: req.body.text
+    });
+
+    todo.save().then((doc) => {
+        res.send(doc);
+    }, (e) => {
+        res.status(400).send(e);
+    });
 
 
-let newUser = new User({
-    email: 'sdfsd@asdsa.com'
 });
 
-newUser.save().then((doc) => {
-    console.log('Save to user', doc);
-}, (e) => {
-    console.log('Save user err', e);
+app.listen(3000, () => {
+    console.log('Started on port 3000');
 });
+
