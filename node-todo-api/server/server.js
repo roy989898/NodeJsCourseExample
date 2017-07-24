@@ -3,9 +3,7 @@ let Todo = require('./models/todo').Todo;
 let User = require('./models/user').User;
 const express = require('express');
 const bodyParser = require('body-parser');
-let newTodo = new Todo({
-    text: false
-});
+
 
 
 let app = express();
