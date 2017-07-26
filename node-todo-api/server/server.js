@@ -40,12 +40,12 @@ app.get('/todos/:id', (req, res) => {
 
     // valid id use is Vaild
     if (!ObjectID.isValid(id)) {
-        res.status(400).send({});
+        res.status(404).send({});
     } else {
         Todo.findById(id).then((todo) => {
 
             if (!todo) {
-                return res.status(400).send({});
+                return res.status(404).send({});
             }
             res.send({todo});
 
