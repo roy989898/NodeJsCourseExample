@@ -165,22 +165,63 @@ describe('Delete /todos/:id', () => {
 
     });
 
-    describe('PATCH /todos/:id', () => {
 
-        it('should update the tdo', (done) => {
-            // grad id of first item
-            // update text,set completed true
-            // 200
-            // text is change ,completed is true,completed is a number  .toBeA
-        });
 
-        it('should clear completedAt when todo is not completed', (done) => {
-            // grab id of second todo item
-            // update text ,set completed to false
-            // 200
-            // text is changed,completed false,completed is nukk  .NoExist
+});
 
-        });
+describe('PATCH /todos/:id', () => {
+
+    it('should update the tdo', (done) => {
+        // grab id of first item
+        let idString = todos[0]._id.toHexString();
+
+        // 'text', 'completed'
+        let text = 'updated';
+        let completed = true;
+
+        request(app).patch('/todos/' + idString)
+            .send({
+                completed,
+                text
+            })
+            .expect(200)
+            .expect((res) => {
+
+                expect(res.body.todo.completed).toBe(true);
+                expect(res.body.todo.text).toBe(text);
+                expect(res.body.todo.completedAt).toBeA('number');
+
+            })
+            .end(done);
+
+
+        // update text,set completed true
+        // 200
+        // text is change ,completed is true,completed is a number  .toBeA
+    });
+
+    it('should clear completedAt when todo is not completed', (done) => {
+        // grab id of second todo item
+        let idString = todos[1]._id.toHexString();
+        let text = 'changed';
+        let completed = false;
+        // update text ,set completed to false
+        request(app)
+            .patch('/todos/' + idString)
+            .send({
+                text,
+                completed
+            })
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.todo.completed).toBe(completed);
+                expect(res.body.todo.text).toBe(text);
+                expect(res.body.todo.completedAt).toNotExist();
+            })
+            .end(done);
+
+        // 200
+        // text is changed,completed false,completed is nukk  .NoExist
 
     });
 
