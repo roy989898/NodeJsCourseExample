@@ -11,7 +11,9 @@ const todos = [{
     text: 'First test todo'
 }, {
     _id: new ObjectID(),
-    text: 'Second test todo'
+    text: 'Second test todo',
+    completed: true,
+    completedAt: 334
 }];
 // delete all the Todo
 beforeEach((done) => {
@@ -160,6 +162,25 @@ describe('Delete /todos/:id', () => {
                 expect(res.body).toEqual({});
             })
             .end(done);
+
+    });
+
+    describe('PATCH /todos/:id', () => {
+
+        it('should update the tdo', (done) => {
+            // grad id of first item
+            // update text,set completed true
+            // 200
+            // text is change ,completed is true,completed is a number  .toBeA
+        });
+
+        it('should clear completedAt when todo is not completed', (done) => {
+            // grab id of second todo item
+            // update text ,set completed to false
+            // 200
+            // text is changed,completed false,completed is nukk  .NoExist
+
+        });
 
     });
 
