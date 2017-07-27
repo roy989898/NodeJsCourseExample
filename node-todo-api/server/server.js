@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 let app = express();
 
 app.use(bodyParser.json());
+app.set('view engine', 'hbs');
 
 app.post('/todos', (req, res) => {
     let todo = new Todo({
@@ -27,8 +28,8 @@ app.post('/todos', (req, res) => {
 });
 
 app.get('/cap', (req, res) => {
-    hbs.render('cap.hbs');
-   
+    res.render('about.hbs');
+
 });
 
 app.get('/todos', (req, res) => {
