@@ -5,6 +5,7 @@ let User = require('./models/user').User;
 const ObjectID = require('mongodb').ObjectID;
 const express = require('express');
 const bodyParser = require('body-parser');
+const hbs = require('hbs');
 const port = process.env.PORT || 3000;
 
 let app = express();
@@ -26,6 +27,11 @@ app.post('/todos', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
+    hbs.render('cap.hbs');
+   
+});
+
+app.get('/cap', (req, res) => {
     Todo.find({}).then((todos) => {
         res.send({ todos });
     }, (e) => {
