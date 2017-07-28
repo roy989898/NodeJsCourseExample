@@ -134,6 +134,17 @@ app.patch('/todos/:id', (req, res) => {
 
 });
 
+// POST /users
+app.post('/users', (req, res) => {
+    let body = _.pick(req.body, ['email', 'password']);
+    let user = new User(body);
+
+    user.save().then(user => {
+        res.send({ user });
+    }).catch(e => {
+        res.status(400).send({ e });
+    });
+});
 
 
 app.listen(port, () => {

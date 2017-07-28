@@ -27,8 +27,8 @@ let User = mongoose.model('User', {
     },
 
     password: {
-        type: Strinh,
-        require: true,
+        type: String,
+        required: true,
         minlength: 6
     },
     tokens: [{
