@@ -16,13 +16,15 @@
   "dependencies": {
     "@types/lodash": "^4.14.71",
     "@types/node": "^8.0.16",
+    "@types/validator": "^6.2.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "hbs": "^4.0.1",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.3",
-    "underdash": "0.0.1"
+    "underdash": "0.0.1",
+    "validator": "^8.0.0"
   },
   "devDependencies": {
     "expect": "^1.20.2",

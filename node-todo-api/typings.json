@@ -7,7 +7,8 @@
     "lodash": "registry:dt/lodash#4.14.0+20170324155812",
     "mongodb": "registry:npm/mongodb#2.1.0+20170211100415",
     "mongoose": "registry:npm/mongoose#4.3.5+20160628072220",
-    "supertest": "registry:dt/supertest#1.1.0+20161122042843"
+    "supertest": "registry:dt/supertest#1.1.0+20161122042843",
+    "validator": "registry:npm/validator#7.0.0+20170614153752"
   },
   "globalDependencies": {
     "mongoose": "registry:dt/mongoose#4.7.0+20170322192047"
