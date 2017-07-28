@@ -28,7 +28,7 @@ app.post('/todos', (req, res) => {
 });
 
 app.get('/cap', (req, res) => {
-    res.render('about.hbs');
+    res.render('cap.hbs');
 
 });
 
