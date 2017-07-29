@@ -36,19 +36,7 @@ let UserSchema = new mongoose.Schema({
     }]
 });
 
-/* {
-    "__v": 1,
-    "email": "roy787@sxddddddddddxxs.com",
-    "password": "sdfsdsdfsdfssss",
-    "_id": "597bf8debaa9770ef018f000",
-    "tokens": [
-        {
-            "access": "auth",
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OTdiZjhkZWJhYTk3NzBlZjAxOGYwMDAiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTAxMjk2ODYyfQ.i29rN8wzwZvcYVeHjszaCePcmePbwk-4vIO1gzH6Ns0",
-            "_id": "597bf8debaa9770ef018f001"
-        }
-    ]
-} */
+
 UserSchema.methods.toJSON = function () {
     let user = this;
     let userObject = user.toObject();
