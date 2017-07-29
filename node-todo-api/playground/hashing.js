@@ -1,7 +1,17 @@
 const SHA256 = require('crypto-js').SHA256;
+const jwt = require('jsonwebtoken');
 
- 
-let message = 'I am user number 3';
+let data = {
+    id: 10
+};
+
+let token = jwt.sign(data, '123abc');
+console.log('Token', token);
+
+let decoded = jwt.verify(token, '123abc');
+console.log('decoded', decoded);
+
+/* let message = 'I am user number 3';
 let hash = SHA256(message).toString();
 
 console.log('Message: ' + message);
@@ -28,4 +38,5 @@ if (token.hash === resultHash) {
 
     console.log('Data was  cgange,Dont trust');
 
-} 
+}  */
+
