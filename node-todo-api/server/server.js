@@ -150,6 +150,22 @@ app.post('/users', (req, res) => {
 });
 
 
+
+
+app.get('/users/me', (req, res) => {
+    let token = req.header('x-auth');
+    User.findByToken(token).then((user) => {
+        if (!user) {
+            return new Promise((resolve, reject) => {
+                reject('Can not find user');
+            });
+        }
+        res.send(user);
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+});
+
 app.listen(port, () => {
     console.log('Started on port ' + port);
 });
