@@ -140,7 +140,7 @@ app.post('/users', (req, res) => {
     let user = new User(body);
 
     user.save().then(user => {
-        return user.generateAuthToken();
+        return user.generateAuthTokenAndSave();
     }).then((token) => {
         res.header('x-auth', token).send(user.toJSON());
     }).catch(e => {

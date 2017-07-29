@@ -56,7 +56,7 @@ UserSchema.methods.toJSON = function () {
     return _.pick(userObject, ['_id', 'email']);
 };
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthTokenAndSave = function () {
     let user = this;
     let access = 'auth';
     let token = jwt.sign({ _id: user._id.toHexString(), access }, 'abc123').toString();
