@@ -151,8 +151,7 @@ app.post('/users', (req, res) => {
 
 
 
-
-app.get('/users/me', (req, res) => {
+let authenticate = (req, res, next) => {
     let token = req.header('x-auth');
     User.findByToken(token).then((user) => {
         if (!user) {
@@ -160,10 +159,15 @@ app.get('/users/me', (req, res) => {
                 reject('Can not find user');
             });
         }
-        res.send(user);
+        req.user = user;
+        req.token = token;
     }).catch((e) => {
-        res.status(400).send(e);
+        res.status(401).send(e);
     });
+};
+
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 app.listen(port, () => {
