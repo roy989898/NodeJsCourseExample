@@ -14,6 +14,7 @@ if (env === 'development') {
 const _ = require('lodash');
 let Todo = require('./models/todo').Todo;
 let User = require('./models/user').User;
+const authenticate = require('./middleware/authenticate').authenticate;
 const ObjectID = require('mongodb').ObjectID;
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -150,21 +151,6 @@ app.post('/users', (req, res) => {
 });
 
 
-
-let authenticate = (req, res, next) => {
-    let token = req.header('x-auth');
-    User.findByToken(token).then((user) => {
-        if (!user) {
-            return new Promise((resolve, reject) => {
-                reject('Can not find user');
-            });
-        }
-        req.user = user;
-        req.token = token;
-    }).catch((e) => {
-        res.status(401).send(e);
-    });
-};
 
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
