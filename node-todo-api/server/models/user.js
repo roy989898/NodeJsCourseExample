@@ -3,6 +3,8 @@ const mongoose = require('../db/mongoose').mongoose;
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
+const constants = require('./../../constants');
 
 let UserSchema = new mongoose.Schema({
     email: {
@@ -83,6 +85,23 @@ UserSchema.statics.findByToken = function (token) {
     });
 
 };
+
+UserSchema.pre('save', function (next) {
+    let user = this;
+
+    // because we will save the hashed password,if we hash the password every time save,than  we will hash the hashed password,igt is not correct,sho we need to only 
+    // hash the new modified password,it is not hash already
+    if (user.isModified('password')) {
+        // hash the password here
+        bcrypt.hash(user.password, constants.BC_SALT, function (err, hash) {
+            user.password = hash;
+            next();
+        });
+
+    } else {
+        next();
+    }
+});
 
 let User = mongoose.model('User', UserSchema);
 
