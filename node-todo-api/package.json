@@ -23,7 +23,7 @@
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.30",
-    "mongoose": "^4.11.3",
+    "mongoose": "^4.11.5",
     "underdash": "0.0.1",
     "validator": "^8.0.0"
   },
