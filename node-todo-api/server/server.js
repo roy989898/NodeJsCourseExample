@@ -12,6 +12,7 @@ if (env === 'development') {
 }
 
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
 let Todo = require('./models/todo').Todo;
 let User = require('./models/user').User;
 const authenticate = require('./middleware/authenticate').authenticate;
@@ -154,6 +155,25 @@ app.post('/users', (req, res) => {
 
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
+});
+
+
+// POST /users/login  {email,plainPassword}
+app.post('/users/login', (req, res) => {
+    // log should send the server the email and plain text password
+    let body = _.pick(req.body, ['email', 'password']);
+    // use the email to find the user
+    User.findByCredentials(body.email, body.password).then(user => {
+
+        return user.generateAuthTokenAndSave().then((token) => {
+            res.header('x-auth', token).send(user.toJSON());
+        });
+
+    }).catch(e => {
+        res.status(400).send();
+    });
+
+
 });
 
 app.listen(port, () => {
