@@ -4,10 +4,12 @@ const ObjectID = require('mongodb').ObjectID;
 
 const app = require('../server').app;
 const Todo = require('../models/todo').Todo;
-const User = require('../models/user').Todo;
+const User = require('../models/user').User;
 const seed = require('./seed/seed');
 
+
 const todos = seed.todos;
+const users = seed.users;
 const populateTodos = seed.populateTodos;
 const ppopulateUsers = seed.ppopulateUsers;
 // delete all the Todo
@@ -216,5 +218,118 @@ describe('PATCH /todos/:id', () => {
         // text is changed,completed false,completed is nukk  .NoExist
 
     });
+
+
+
+
+});
+
+
+describe('GET /users/me', () => {
+    let sendToken = users[0].tokens[0].token;
+
+    it('should return user if authenticated', (done) => {
+        request(app)
+            .get('/users/me')
+            .set('x-auth', sendToken)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body._id).toBe(users[0]._id.toHexString());
+                expect(res.body.email).toBe(users[0].email);
+            })
+            .end(done);
+
+
+
+    });
+
+    it('should return 401 if not authenticated', (done) => {
+
+        request(app)
+            .get('/users/me')
+            .set('x-auth', 'this_is_a_wrong_token')
+            .expect(401)
+            .expect((res) => {
+                expect(res.body).toEqual({});
+
+            })
+            .end(done);
+
+    });
+
+
+
+
+
+});
+
+describe('POST /users', () => {
+    let email = 'popoo@gmail.com';
+    let password = 'abc123';
+    let sendUser = {
+        email,
+        password
+
+    };
+
+    it('should create a user', (done) => {
+        request(app)
+            .post('/users')
+            .send(sendUser)
+            .expect(200)
+            .expect((res) => {
+                expect(res.headers['x-auth']).toExist();
+                expect(res.body.email).toEqual(email);
+                expect(res.body._id).toExist();
+            })
+            .end((err) => {
+                if (err) {
+                    return done(err);
+                }
+
+                User.findOne({ email }).then((user) => {
+                    console.log(user);
+                    expect(user).toExist();
+                    expect(user.password).toNotBe(password);
+                    done();
+
+                });
+            });
+
+
+
+
+
+    });
+
+
+    it('should not create user if email in use', (done) => {
+        let email2 = 'popoo2@gmail.com';
+        request(app)
+            .post('/users')
+            .send({
+                email: email2,
+                password: 'pass123123'
+            })
+            .expect(200)
+            .end((err) => {
+                if (err) {
+                    return done(err);
+                }
+                request(app)
+                    .post('/users')
+                    .send({
+                        email: email2,
+                        password: '123sas3123'
+                    })
+                    .expect(400)
+                    .end(done);
+            });
+
+
+    });
+
+
+
 
 });

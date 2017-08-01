@@ -54,6 +54,7 @@ const ppopulateUsers = (done) => {
 
 module.exports = {
     todos,
+    users,
     populateTodos,
     ppopulateUsers
 
